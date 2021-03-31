@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "zemfrog-auth"
+version = "1.0.1"
+description = "Authentication for the zemfrog framework"
+authors = ["aprilahijriyan <hijriyan23@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+zemfrog = "^4.0.4"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
