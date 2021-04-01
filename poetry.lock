@@ -712,7 +712,7 @@ watchdog = ["watchdog"]
 
 [[package]]
 name = "zemfrog"
-version = "4.0.4"
+version = "4.0.5"
 description = "Zemfrog is a simple framework based on flask for building a REST API quickly."
 category = "main"
 optional = false
@@ -751,7 +751,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pyt
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "32329304671e2be6733275a40b1ae7f33a58490e2c1208aa541b8ae65172d967"
+content-hash = "f37289fd9c2cdbe4c1684d9b955cc8dac32bd850f58b793916e6f5f4c3ed90b2"
 
 [metadata.files]
 alembic = [
@@ -1048,8 +1048,8 @@ werkzeug = [
     {file = "Werkzeug-1.0.1.tar.gz", hash = "sha256:6c80b1e5ad3665290ea39320b91e1be1e0d5f60652b964a3070216de83d2e47c"},
 ]
 zemfrog = [
-    {file = "zemfrog-4.0.4-py2.py3-none-any.whl", hash = "sha256:7a0d687d9bdfdb3d35cf3d461adcc4024e40862afe6dd11281683617604d690b"},
-    {file = "zemfrog-4.0.4.tar.gz", hash = "sha256:067b5b5c118b63e80f75eee000611cd6ba24525d46772dca0baeae419917d855"},
+    {file = "zemfrog-4.0.5-py2.py3-none-any.whl", hash = "sha256:5a2e7c6b289a0296773346427053e1872a85cd61650d2246769ade0b2767e4d2"},
+    {file = "zemfrog-4.0.5.tar.gz", hash = "sha256:3b2c1254d42aca47ff30928934b15c97bd3d01bd5973478dc5b8ed9744353df9"},
 ]
 zipp = [
     {file = "zipp-3.4.1-py3-none-any.whl", hash = "sha256:51cb66cc54621609dd593d1787f286ee42a5c0adbb4b29abea5a63edc3e03098"},
