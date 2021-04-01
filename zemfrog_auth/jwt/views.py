@@ -18,6 +18,7 @@ from zemfrog.models import (
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 from zemfrog.tasks import send_email
 from ..models import User, Log, Role, Permission
+from ..signals import *
 
 
 class PermissionSchema(SQLAlchemyAutoSchema):
@@ -71,6 +72,7 @@ def login(**kwds):
         roles = get_user_roles(user)
         claims = {"roles": roles}
         access_token = create_access_token(email, user_claims=claims)
+        on_user_logged_in.send(user)
         return {"access_token": access_token}
 
     return {"message": "Incorrect email or password.", "code": 404}
@@ -111,6 +113,7 @@ def register(**kwds):
                 )
                 msg = get_mail_template("register.html", token=token)
                 send_email.delay("Registration", html=msg, recipients=[email])
+                on_user_registration.send(user)
                 message = "Successful registration."
                 status_code = 200
             else:
@@ -145,6 +148,7 @@ def confirm_account(token):
             message = "Confirmed."
             status_code = 200
             db_update(user, confirmed=True, date_confirmed=datetime.utcnow())
+            on_confirmed_user.send(user)
 
         else:
             raise DecodeError
@@ -187,6 +191,7 @@ def request_password_reset(**kwds):
             log = Log(date_requested_password_reset=datetime.utcnow())
             user.logs.append(log)
             db_commit()
+            on_forgot_password.send(user)
     else:
         message = "Email required."
         status_code = 403
@@ -251,6 +256,7 @@ def password_reset(token, **kwds):
             log = Log(date_set_new_password=datetime.utcnow())
             user.logs.append(log)
             db_update(user, password=passw)
+            on_reset_password.send(user)
             message = "Successfully change password."
             status_code = 200
         else:
