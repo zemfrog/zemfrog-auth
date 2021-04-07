@@ -58,7 +58,7 @@ def user_detail():
 @marshal_with(404, DefaultResponseSchema)
 @marshal_with(200, LoginSuccessSchema)
 @http_code
-def login(**kwds):
+def login(kwds):
     """
     Login and get access token.
     """
@@ -84,7 +84,7 @@ def login(**kwds):
 @marshal_with(200, DefaultResponseSchema)
 @marshal_with(403, DefaultResponseSchema)
 @http_code
-def register(**kwds):
+def register(kwds):
     """
     Register an account.
     """
@@ -167,7 +167,7 @@ def confirm_account(token):
 @marshal_with(404, DefaultResponseSchema)
 @marshal_with(403, DefaultResponseSchema)
 @http_code
-def request_password_reset(**kwds):
+def request_password_reset(kwds):
     """
     Request a password reset.
     """
@@ -240,7 +240,7 @@ def confirm_password_reset_token(token):
 @marshal_with(401, DefaultResponseSchema)
 @marshal_with(404, DefaultResponseSchema)
 @http_code
-def password_reset(token, **kwds):
+def password_reset(kwds, token):
     """
     Reset user password.
     """
