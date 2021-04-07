@@ -14,7 +14,7 @@ SQLAlchemy = ">=1.3.0"
 
 [[package]]
 name = "amqp"
-version = "5.0.5"
+version = "5.0.6"
 description = "Low-level AMQP client for Python (fork of amqplib)."
 category = "main"
 optional = false
@@ -25,16 +25,16 @@ vine = "5.0.0"
 
 [[package]]
 name = "apispec"
-version = "4.3.0"
+version = "4.4.0"
 description = "A pluggable API specification generator. Currently supports the OpenAPI Specification (f.k.a. the Swagger specification)."
 category = "main"
 optional = false
 python-versions = ">=3.6"
 
 [package.extras]
-dev = ["PyYAML (>=3.10)", "prance[osv] (>=0.11)", "marshmallow (>=3.0.0)", "pytest", "mock", "flake8 (==3.8.4)", "flake8-bugbear (==20.11.1)", "pre-commit (>=2.4,<3.0)", "tox"]
-docs = ["marshmallow (>=3.0.0)", "pyyaml (==5.4.1)", "sphinx (==3.4.3)", "sphinx-issues (==1.2.0)", "sphinx-rtd-theme (==0.5.1)"]
-lint = ["flake8 (==3.8.4)", "flake8-bugbear (==20.11.1)", "pre-commit (>=2.4,<3.0)"]
+dev = ["PyYAML (>=3.10)", "prance[osv] (>=0.11)", "marshmallow (>=3.0.0)", "pytest", "mock", "flake8 (==3.9.0)", "flake8-bugbear (==21.3.2)", "pre-commit (>=2.4,<3.0)", "tox"]
+docs = ["marshmallow (>=3.0.0)", "pyyaml (==5.4.1)", "sphinx (==3.5.3)", "sphinx-issues (==1.2.0)", "sphinx-rtd-theme (==0.5.1)"]
+lint = ["flake8 (==3.9.0)", "flake8-bugbear (==21.3.2)", "pre-commit (>=2.4,<3.0)"]
 tests = ["PyYAML (>=3.10)", "prance[osv] (>=0.11)", "marshmallow (>=3.0.0)", "pytest", "mock"]
 validation = ["prance[osv] (>=0.11)"]
 yaml = ["PyYAML (>=3.10)"]
@@ -57,7 +57,7 @@ python-versions = "*"
 
 [[package]]
 name = "billiard"
-version = "3.6.3.0"
+version = "3.6.4.0"
 description = "Python multiprocessing fork with improvements and bugfixes"
 category = "main"
 optional = false
@@ -163,11 +163,11 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
 name = "decorator"
-version = "4.4.2"
+version = "5.0.5"
 description = "Decorators for Humans"
 category = "main"
 optional = false
-python-versions = ">=2.6, !=3.0.*, !=3.1.*"
+python-versions = ">=3.5"
 
 [[package]]
 name = "flask"
@@ -187,20 +187,6 @@ Werkzeug = ">=0.15"
 dev = ["pytest", "coverage", "tox", "sphinx", "pallets-sphinx-themes", "sphinxcontrib-log-cabinet", "sphinx-issues"]
 docs = ["sphinx", "pallets-sphinx-themes", "sphinxcontrib-log-cabinet", "sphinx-issues"]
 dotenv = ["python-dotenv"]
-
-[[package]]
-name = "flask-apispec"
-version = "0.11.0"
-description = "Build and document REST APIs with Flask and apispec"
-category = "main"
-optional = false
-python-versions = ">=3.6"
-
-[package.dependencies]
-apispec = ">=4.0.0"
-flask = ">=0.10.1"
-marshmallow = ">=3.0.0"
-webargs = ">=6.0.0"
 
 [[package]]
 name = "flask-cors"
@@ -288,6 +274,21 @@ python-versions = "*"
 click = "*"
 flask = ">=1.0"
 IPython = ">=5.0.0"
+
+[[package]]
+name = "flask-smorest"
+version = "0.29.0"
+description = "Flask/Marshmallow-based REST API framework"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+apispec = ">=4.0.0,<5"
+flask = ">=1.1.0,<2"
+marshmallow = ">=3.10.0,<4"
+webargs = ">=7.0.0,<8"
+werkzeug = ">=0.15,<2"
 
 [[package]]
 name = "flask-sqlalchemy"
@@ -560,7 +561,7 @@ six = ">=1.5"
 
 [[package]]
 name = "python-dotenv"
-version = "0.16.0"
+version = "0.17.0"
 description = "Read key-value pairs from a .env file and set them as environment variables"
 category = "main"
 optional = false
@@ -712,29 +713,36 @@ watchdog = ["watchdog"]
 
 [[package]]
 name = "zemfrog"
-version = "4.0.5"
+version = "5.0.1"
 description = "Zemfrog is a simple framework based on flask for building a REST API quickly."
 category = "main"
 optional = false
 python-versions = ">=3.6"
+develop = false
 
 [package.dependencies]
 celery = "5.0.2"
-Click = ">=7.0"
+click = "*"
 flask = "1.1.2"
-flask-apispec = "0.11.0"
 flask-cors = "3.0.9"
 flask-jwt-extended = "3.25.0"
 flask-mail = "*"
 flask-marshmallow = "*"
 flask-migrate = "*"
 flask-shell-ipython = "*"
+flask-smorest = "*"
 flask-sqlalchemy = "2.4.4"
 marshmallow = "*"
 marshmallow-sqlalchemy = "*"
 python-dotenv = "*"
 sqlalchemy = "<1.4.0"
 sqlalchemy-utils = "*"
+
+[package.source]
+type = "git"
+url = "https://github.com/zemfrog/zemfrog"
+reference = "master"
+resolved_reference = "462049cad2a51aa7e650d1914678a0870a3ff126"
 
 [[package]]
 name = "zipp"
@@ -751,7 +759,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pyt
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "f37289fd9c2cdbe4c1684d9b955cc8dac32bd850f58b793916e6f5f4c3ed90b2"
+content-hash = "cd2f30d82bb8b1490d3aa14a22af0cb95da519c558c8f34bc7fd97aa5e80abbd"
 
 [metadata.files]
 alembic = [
@@ -759,12 +767,12 @@ alembic = [
     {file = "alembic-1.5.8.tar.gz", hash = "sha256:e27fd67732c97a1c370c33169ef4578cf96436fa0e7dcfaeeef4a917d0737d56"},
 ]
 amqp = [
-    {file = "amqp-5.0.5-py3-none-any.whl", hash = "sha256:1e759a7f202d910939de6eca45c23a107f6b71111f41d1282c648e9ac3d21901"},
-    {file = "amqp-5.0.5.tar.gz", hash = "sha256:affdd263d8b8eb3c98170b78bf83867cdb6a14901d586e00ddb65bfe2f0c4e60"},
+    {file = "amqp-5.0.6-py3-none-any.whl", hash = "sha256:493a2ac6788ce270a2f6a765b017299f60c1998f5a8617908ee9be082f7300fb"},
+    {file = "amqp-5.0.6.tar.gz", hash = "sha256:03e16e94f2b34c31f8bf1206d8ddd3ccaa4c315f7f6a1879b7b1210d229568c2"},
 ]
 apispec = [
-    {file = "apispec-4.3.0-py2.py3-none-any.whl", hash = "sha256:83e4d30edce987f4791f950c847d2b8cbe91e55af3d1ac7e3a35011a5c6fdbdd"},
-    {file = "apispec-4.3.0.tar.gz", hash = "sha256:5ec0fe72f1422a1198973fcbb48d0eb5c7390f4b0fbe55474fce999ad6826a9b"},
+    {file = "apispec-4.4.0-py2.py3-none-any.whl", hash = "sha256:042096b2e7e1cc15548497e46691718e762296429672d6d68c13389b3c10bfaf"},
+    {file = "apispec-4.4.0.tar.gz", hash = "sha256:6288b62bf35930fbe33049dc3242a0c48a09f214a196331cae4585af8f5bc95c"},
 ]
 appnope = [
     {file = "appnope-0.1.2-py2.py3-none-any.whl", hash = "sha256:93aa393e9d6c54c5cd570ccadd8edad61ea0c4b9ea7a01409020c9aa019eb442"},
@@ -775,8 +783,8 @@ backcall = [
     {file = "backcall-0.2.0.tar.gz", hash = "sha256:5cbdbf27be5e7cfadb448baf0aa95508f91f2bbc6c6437cd9cd06e2a4c215e1e"},
 ]
 billiard = [
-    {file = "billiard-3.6.3.0-py3-none-any.whl", hash = "sha256:bff575450859a6e0fbc2f9877d9b715b0bbc07c3565bb7ed2280526a0cdf5ede"},
-    {file = "billiard-3.6.3.0.tar.gz", hash = "sha256:d91725ce6425f33a97dfa72fb6bfef0e47d4652acd98a032bd1a7fbf06d5fa6a"},
+    {file = "billiard-3.6.4.0-py3-none-any.whl", hash = "sha256:87103ea78fa6ab4d5c751c4909bcff74617d985de7fa8b672cf8618afd5a875b"},
+    {file = "billiard-3.6.4.0.tar.gz", hash = "sha256:299de5a8da28a783d51b197d496bef4f1595dd023a93a4f59dde1886ae905547"},
 ]
 blinker = [
     {file = "blinker-1.4.tar.gz", hash = "sha256:471aee25f3992bd325afa3772f1063dbdbbca947a041b8b89466dc00d606f8b6"},
@@ -801,16 +809,12 @@ colorama = [
     {file = "colorama-0.4.4.tar.gz", hash = "sha256:5941b2b48a20143d2267e95b1c2a7603ce057ee39fd88e7329b0c292aa16869b"},
 ]
 decorator = [
-    {file = "decorator-4.4.2-py2.py3-none-any.whl", hash = "sha256:41fa54c2a0cc4ba648be4fd43cff00aedf5b9465c9bf18d64325bc225f08f760"},
-    {file = "decorator-4.4.2.tar.gz", hash = "sha256:e3a62f0520172440ca0dcc823749319382e377f37f140a0b99ef45fecb84bfe7"},
+    {file = "decorator-5.0.5-py3-none-any.whl", hash = "sha256:b7157d62ea3c2c0c57b81a05e4569853e976a3dda5dd7a1cb86be78978c3c5f8"},
+    {file = "decorator-5.0.5.tar.gz", hash = "sha256:acda948ffcfe4bd0c4a57834b74ad968b91925b8201b740ca9d46fb8c5c618ce"},
 ]
 flask = [
     {file = "Flask-1.1.2-py2.py3-none-any.whl", hash = "sha256:8a4fdd8936eba2512e9c85df320a37e694c93945b33ef33c89946a340a238557"},
     {file = "Flask-1.1.2.tar.gz", hash = "sha256:4efa1ae2d7c9865af48986de8aeb8504bf32c7f3d6fdc9353d34b21f4b127060"},
-]
-flask-apispec = [
-    {file = "flask-apispec-0.11.0.tar.gz", hash = "sha256:89e05dd2cb6e91ad999033c59aed4b5036aea9f0794d5ea5d9082be8ad4a99f2"},
-    {file = "flask_apispec-0.11.0-py2.py3-none-any.whl", hash = "sha256:7e82dabcac4234c1540438daac045e8475804b4dcf7f68898ffc47113ab34da0"},
 ]
 flask-cors = [
     {file = "Flask-Cors-3.0.9.tar.gz", hash = "sha256:6bcfc100288c5d1bcb1dbb854babd59beee622ffd321e444b05f24d6d58466b8"},
@@ -833,6 +837,10 @@ flask-migrate = [
 flask-shell-ipython = [
     {file = "flask-shell-ipython-0.4.1.tar.gz", hash = "sha256:fb3b390f4dc03d7a960c62c5b51ce4deca19ceff77e4db3d4670012adc529ebd"},
     {file = "flask_shell_ipython-0.4.1-py2.py3-none-any.whl", hash = "sha256:f212b4fad6831edf652799c719cd05fd0716edfaa5506eb41ff9ef09109890d3"},
+]
+flask-smorest = [
+    {file = "flask-smorest-0.29.0.tar.gz", hash = "sha256:95c929b3e911bce89cbd25fcbd7c71ea4a693bfbe435e1dfaa6374dc2e1cf444"},
+    {file = "flask_smorest-0.29.0-py3-none-any.whl", hash = "sha256:f4e833afae51253c6da23367adf6c64cb99addd87495f704aa429b438a430ecc"},
 ]
 flask-sqlalchemy = [
     {file = "Flask-SQLAlchemy-2.4.4.tar.gz", hash = "sha256:bfc7150eaf809b1c283879302f04c42791136060c6eeb12c0c6674fb1291fae5"},
@@ -965,8 +973,8 @@ python-dateutil = [
     {file = "python_dateutil-2.8.1-py2.py3-none-any.whl", hash = "sha256:75bb3f31ea686f1197762692a9ee6a7550b59fc6ca3a1f4b5d7e32fb98e2da2a"},
 ]
 python-dotenv = [
-    {file = "python-dotenv-0.16.0.tar.gz", hash = "sha256:9fa413c37d4652d3fa02fea0ff465c384f5db75eab259c4fc5d0c5b8bf20edd4"},
-    {file = "python_dotenv-0.16.0-py2.py3-none-any.whl", hash = "sha256:31d752f5b748f4e292448c9a0cac6a08ed5e6f4cefab85044462dcad56905cec"},
+    {file = "python-dotenv-0.17.0.tar.gz", hash = "sha256:471b782da0af10da1a80341e8438fca5fadeba2881c54360d5fd8d03d03a4f4a"},
+    {file = "python_dotenv-0.17.0-py2.py3-none-any.whl", hash = "sha256:49782a97c9d641e8a09ae1d9af0856cc587c8d2474919342d5104d85be9890b2"},
 ]
 python-editor = [
     {file = "python-editor-1.0.4.tar.gz", hash = "sha256:51fda6bcc5ddbbb7063b2af7509e43bd84bfc32a4ff71349ec7847713882327b"},
@@ -1047,10 +1055,7 @@ werkzeug = [
     {file = "Werkzeug-1.0.1-py2.py3-none-any.whl", hash = "sha256:2de2a5db0baeae7b2d2664949077c2ac63fbd16d98da0ff71837f7d1dea3fd43"},
     {file = "Werkzeug-1.0.1.tar.gz", hash = "sha256:6c80b1e5ad3665290ea39320b91e1be1e0d5f60652b964a3070216de83d2e47c"},
 ]
-zemfrog = [
-    {file = "zemfrog-4.0.5-py2.py3-none-any.whl", hash = "sha256:5a2e7c6b289a0296773346427053e1872a85cd61650d2246769ade0b2767e4d2"},
-    {file = "zemfrog-4.0.5.tar.gz", hash = "sha256:3b2c1254d42aca47ff30928934b15c97bd3d01bd5973478dc5b8ed9744353df9"},
-]
+zemfrog = []
 zipp = [
     {file = "zipp-3.4.1-py3-none-any.whl", hash = "sha256:51cb66cc54621609dd593d1787f286ee42a5c0adbb4b29abea5a63edc3e03098"},
     {file = "zipp-3.4.1.tar.gz", hash = "sha256:3607921face881ba3e026887d8150cca609d517579abe052ac81fc5aeffdbd76"},

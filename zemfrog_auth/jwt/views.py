@@ -1,10 +1,9 @@
 from datetime import datetime, timedelta
 from flask_jwt_extended import create_access_token, decode_token, get_raw_jwt
-from flask_apispec import use_kwargs, marshal_with
 from jwt import DecodeError, ExpiredSignatureError
 from marshmallow import fields
 from werkzeug.security import generate_password_hash, check_password_hash
-from zemfrog.decorators import http_code, authenticate
+from zemfrog.decorators import http_code, authenticate, use_kwargs, marshal_with
 from zemfrog.helper import db_add, db_update, db_commit, get_mail_template, get_user_roles
 from zemfrog.models import (
     DefaultResponseSchema,
@@ -23,11 +22,13 @@ from ..signals import *
 
 class PermissionSchema(SQLAlchemyAutoSchema):
     class Meta:
+        ordered = True
         model = Permission
 
 
 class RoleSchema(SQLAlchemyAutoSchema):
     class Meta:
+        ordered = True
         model = Role
 
     permissions = fields.List(fields.Nested(PermissionSchema()))
@@ -35,6 +36,7 @@ class RoleSchema(SQLAlchemyAutoSchema):
 
 class UserDetailSchema(SQLAlchemyAutoSchema):
     class Meta:
+        ordered = True
         model = User
         exclude = ("password",)
 
@@ -42,7 +44,7 @@ class UserDetailSchema(SQLAlchemyAutoSchema):
 
 
 @authenticate()
-@marshal_with(UserDetailSchema)
+@marshal_with(200, UserDetailSchema)
 def user_detail():
     """
     User detail info.
@@ -53,10 +55,10 @@ def user_detail():
     return user
 
 @use_kwargs(LoginSchema(), location="form")
-@marshal_with(DefaultResponseSchema, 404)
-@marshal_with(LoginSuccessSchema, 200)
+@marshal_with(404, DefaultResponseSchema)
+@marshal_with(200, LoginSuccessSchema)
 @http_code
-def login(**kwds):
+def login(kwds):
     """
     Login and get access token.
     """
@@ -79,10 +81,10 @@ def login(**kwds):
 
 
 @use_kwargs(RegisterSchema(), location="form")
-@marshal_with(DefaultResponseSchema, 200)
-@marshal_with(DefaultResponseSchema, 403)
+@marshal_with(200, DefaultResponseSchema)
+@marshal_with(403, DefaultResponseSchema)
 @http_code
-def register(**kwds):
+def register(kwds):
     """
     Register an account.
     """
@@ -129,8 +131,8 @@ def register(**kwds):
     return {"message": message, "code": status_code}
 
 
-@marshal_with(DefaultResponseSchema, 200)
-@marshal_with(DefaultResponseSchema, 403)
+@marshal_with(200, DefaultResponseSchema)
+@marshal_with(403, DefaultResponseSchema)
 @http_code
 def confirm_account(token):
     """
@@ -161,11 +163,11 @@ def confirm_account(token):
 
 
 @use_kwargs(RequestPasswordResetSchema(), location="form")
-@marshal_with(DefaultResponseSchema, 200)
-@marshal_with(DefaultResponseSchema, 404)
-@marshal_with(DefaultResponseSchema, 403)
+@marshal_with(200, DefaultResponseSchema)
+@marshal_with(404, DefaultResponseSchema)
+@marshal_with(403, DefaultResponseSchema)
 @http_code
-def request_password_reset(**kwds):
+def request_password_reset(kwds):
     """
     Request a password reset.
     """
@@ -185,7 +187,7 @@ def request_password_reset(**kwds):
                 user_claims={"token_password_reset": True},
             )
             msg = get_mail_template(
-                "request_password_reset.html", token=token
+                "forgot_password.html", token=token
             )
             send_email.delay("Forgot password", html=msg, recipients=[email])
             log = Log(date_requested_password_reset=datetime.utcnow())
@@ -199,9 +201,9 @@ def request_password_reset(**kwds):
     return {"message": message, "code": status_code}
 
 
-@marshal_with(DefaultResponseSchema, 200)
-@marshal_with(DefaultResponseSchema, 401)
-@marshal_with(DefaultResponseSchema, 403)
+@marshal_with(200, DefaultResponseSchema)
+@marshal_with(401, DefaultResponseSchema)
+@marshal_with(403, DefaultResponseSchema)
 @http_code
 def confirm_password_reset_token(token):
     """
@@ -233,12 +235,12 @@ def confirm_password_reset_token(token):
 
 
 @use_kwargs(PasswordResetSchema(), location="form")
-@marshal_with(DefaultResponseSchema, 200)
-@marshal_with(DefaultResponseSchema, 403)
-@marshal_with(DefaultResponseSchema, 401)
-@marshal_with(DefaultResponseSchema, 404)
+@marshal_with(200, DefaultResponseSchema)
+@marshal_with(403, DefaultResponseSchema)
+@marshal_with(401, DefaultResponseSchema)
+@marshal_with(404, DefaultResponseSchema)
 @http_code
-def password_reset(token, **kwds):
+def password_reset(kwds, token):
     """
     Reset user password.
     """

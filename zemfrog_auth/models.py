@@ -1,6 +1,7 @@
 from zemfrog.helper import get_object_model
+from werkzeug.local import LocalProxy
 
-User = get_object_model("user")
-Role = get_object_model("role")
-Permission = get_object_model("permission")
-Log = get_object_model("log")
+User = LocalProxy(lambda: get_object_model("user"))
+Role = LocalProxy(lambda: get_object_model("role"))
+Permission = LocalProxy(lambda: get_object_model("permission"))
+Log = LocalProxy(lambda: get_object_model("log"))
