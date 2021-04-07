@@ -187,7 +187,7 @@ def request_password_reset(kwds):
                 user_claims={"token_password_reset": True},
             )
             msg = get_mail_template(
-                "request_password_reset.html", token=token
+                "forgot_password.html", token=token
             )
             send_email.delay("Forgot password", html=msg, recipients=[email])
             log = Log(date_requested_password_reset=datetime.utcnow())
