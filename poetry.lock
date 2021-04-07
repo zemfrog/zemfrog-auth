@@ -189,20 +189,6 @@ docs = ["sphinx", "pallets-sphinx-themes", "sphinxcontrib-log-cabinet", "sphinx-
 dotenv = ["python-dotenv"]
 
 [[package]]
-name = "flask-apispec"
-version = "0.11.0"
-description = "Build and document REST APIs with Flask and apispec"
-category = "main"
-optional = false
-python-versions = ">=3.6"
-
-[package.dependencies]
-apispec = ">=4.0.0"
-flask = ">=0.10.1"
-marshmallow = ">=3.0.0"
-webargs = ">=6.0.0"
-
-[[package]]
 name = "flask-cors"
 version = "3.0.9"
 description = "A Flask extension adding a decorator for CORS support"
@@ -288,6 +274,21 @@ python-versions = "*"
 click = "*"
 flask = ">=1.0"
 IPython = ">=5.0.0"
+
+[[package]]
+name = "flask-smorest"
+version = "0.29.0"
+description = "Flask/Marshmallow-based REST API framework"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+apispec = ">=4.0.0,<5"
+flask = ">=1.1.0,<2"
+marshmallow = ">=3.10.0,<4"
+webargs = ">=7.0.0,<8"
+werkzeug = ">=0.15,<2"
 
 [[package]]
 name = "flask-sqlalchemy"
@@ -712,29 +713,35 @@ watchdog = ["watchdog"]
 
 [[package]]
 name = "zemfrog"
-version = "4.0.5"
+version = "5.0.1"
 description = "Zemfrog is a simple framework based on flask for building a REST API quickly."
 category = "main"
 optional = false
 python-versions = ">=3.6"
+develop = false
 
 [package.dependencies]
 celery = "5.0.2"
-Click = ">=7.0"
 flask = "1.1.2"
-flask-apispec = "0.11.0"
 flask-cors = "3.0.9"
 flask-jwt-extended = "3.25.0"
 flask-mail = "*"
 flask-marshmallow = "*"
 flask-migrate = "*"
 flask-shell-ipython = "*"
+flask-smorest = "*"
 flask-sqlalchemy = "2.4.4"
 marshmallow = "*"
 marshmallow-sqlalchemy = "*"
 python-dotenv = "*"
 sqlalchemy = "<1.4.0"
 sqlalchemy-utils = "*"
+
+[package.source]
+type = "git"
+url = "https://github.com/zemfrog/zemfrog"
+reference = "master"
+resolved_reference = "39b5db0859072eb3ef87df187bb9915fea7387b2"
 
 [[package]]
 name = "zipp"
@@ -751,7 +758,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pyt
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "f37289fd9c2cdbe4c1684d9b955cc8dac32bd850f58b793916e6f5f4c3ed90b2"
+content-hash = "cd2f30d82bb8b1490d3aa14a22af0cb95da519c558c8f34bc7fd97aa5e80abbd"
 
 [metadata.files]
 alembic = [
@@ -808,10 +815,6 @@ flask = [
     {file = "Flask-1.1.2-py2.py3-none-any.whl", hash = "sha256:8a4fdd8936eba2512e9c85df320a37e694c93945b33ef33c89946a340a238557"},
     {file = "Flask-1.1.2.tar.gz", hash = "sha256:4efa1ae2d7c9865af48986de8aeb8504bf32c7f3d6fdc9353d34b21f4b127060"},
 ]
-flask-apispec = [
-    {file = "flask-apispec-0.11.0.tar.gz", hash = "sha256:89e05dd2cb6e91ad999033c59aed4b5036aea9f0794d5ea5d9082be8ad4a99f2"},
-    {file = "flask_apispec-0.11.0-py2.py3-none-any.whl", hash = "sha256:7e82dabcac4234c1540438daac045e8475804b4dcf7f68898ffc47113ab34da0"},
-]
 flask-cors = [
     {file = "Flask-Cors-3.0.9.tar.gz", hash = "sha256:6bcfc100288c5d1bcb1dbb854babd59beee622ffd321e444b05f24d6d58466b8"},
     {file = "Flask_Cors-3.0.9-py2.py3-none-any.whl", hash = "sha256:cee4480aaee421ed029eaa788f4049e3e26d15b5affb6a880dade6bafad38324"},
@@ -833,6 +836,10 @@ flask-migrate = [
 flask-shell-ipython = [
     {file = "flask-shell-ipython-0.4.1.tar.gz", hash = "sha256:fb3b390f4dc03d7a960c62c5b51ce4deca19ceff77e4db3d4670012adc529ebd"},
     {file = "flask_shell_ipython-0.4.1-py2.py3-none-any.whl", hash = "sha256:f212b4fad6831edf652799c719cd05fd0716edfaa5506eb41ff9ef09109890d3"},
+]
+flask-smorest = [
+    {file = "flask-smorest-0.29.0.tar.gz", hash = "sha256:95c929b3e911bce89cbd25fcbd7c71ea4a693bfbe435e1dfaa6374dc2e1cf444"},
+    {file = "flask_smorest-0.29.0-py3-none-any.whl", hash = "sha256:f4e833afae51253c6da23367adf6c64cb99addd87495f704aa429b438a430ecc"},
 ]
 flask-sqlalchemy = [
     {file = "Flask-SQLAlchemy-2.4.4.tar.gz", hash = "sha256:bfc7150eaf809b1c283879302f04c42791136060c6eeb12c0c6674fb1291fae5"},
@@ -1047,10 +1054,7 @@ werkzeug = [
     {file = "Werkzeug-1.0.1-py2.py3-none-any.whl", hash = "sha256:2de2a5db0baeae7b2d2664949077c2ac63fbd16d98da0ff71837f7d1dea3fd43"},
     {file = "Werkzeug-1.0.1.tar.gz", hash = "sha256:6c80b1e5ad3665290ea39320b91e1be1e0d5f60652b964a3070216de83d2e47c"},
 ]
-zemfrog = [
-    {file = "zemfrog-4.0.5-py2.py3-none-any.whl", hash = "sha256:5a2e7c6b289a0296773346427053e1872a85cd61650d2246769ade0b2767e4d2"},
-    {file = "zemfrog-4.0.5.tar.gz", hash = "sha256:3b2c1254d42aca47ff30928934b15c97bd3d01bd5973478dc5b8ed9744353df9"},
-]
+zemfrog = []
 zipp = [
     {file = "zipp-3.4.1-py3-none-any.whl", hash = "sha256:51cb66cc54621609dd593d1787f286ee42a5c0adbb4b29abea5a63edc3e03098"},
     {file = "zipp-3.4.1.tar.gz", hash = "sha256:3607921face881ba3e026887d8150cca609d517579abe052ac81fc5aeffdbd76"},

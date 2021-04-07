@@ -7,7 +7,7 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.6"
-zemfrog = "^4.0.5"
+zemfrog = {git = "https://github.com/zemfrog/zemfrog"}
 
 [tool.poetry.dev-dependencies]
 

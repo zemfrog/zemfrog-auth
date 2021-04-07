@@ -1,6 +1,5 @@
 from . import views
 
-docs = {"tags": ["JWT"]}
 routes = [
     ("/user", views.user_detail, ["GET"]),
     ("/login", views.login, ["POST"]),
