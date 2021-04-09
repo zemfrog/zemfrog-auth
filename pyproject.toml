@@ -13,8 +13,8 @@ zemfrog = "^5.0.1"
 
 [tool.poetry.urls]
 
-Github = "https://github.com/zemfrog/zemfrog"
-"Issue Tracker" = "https://github.com/zemfrog/zemfrog/issues"
+Github = "https://github.com/zemfrog/zemfrog-auth"
+"Issue Tracker" = "https://github.com/zemfrog/zemfrog-auth/issues"
 Donation = "https://www.patreon.com/aprilahijriyan"
 
 [build-system]
