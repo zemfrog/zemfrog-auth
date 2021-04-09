@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "zemfrog-auth"
-version = "1.0.2"
+version = "1.0.3"
 description = "Authentication for the zemfrog framework"
 authors = ["aprilahijriyan <hijriyan23@gmail.com>"]
 license = "MIT"
