@@ -6,7 +6,7 @@ authors = ["aprilahijriyan <hijriyan23@gmail.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.7"
 zemfrog = {git = "https://github.com/zemfrog/zemfrog"}
 
 [tool.poetry.dev-dependencies]
